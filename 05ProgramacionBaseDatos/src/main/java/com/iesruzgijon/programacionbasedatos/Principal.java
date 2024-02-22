@@ -18,12 +18,18 @@ public class Principal {
         final String USER = "root";
         final String PASS = "123qweASD_";
         final String nameDB = "northwind";
+        String[] resultado;
 
         BaseDatos bd = new BaseDatos(nameDB, USER, PASS);
         
         bd.Conecta();
         
-        bd.consultaPrueba2();
+        //bd.consultaPrueba2();
+        
+        resultado= bd.describe("customers");
+        for (String linea : resultado) {
+            System.out.println(linea);
+        }
         
         bd.Desconecta();
         

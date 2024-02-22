@@ -7,6 +7,7 @@ package com.iesruzgijon.programacionbasedatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -25,7 +26,7 @@ public class BaseDatos {
     private String nameDB;
     private String URL = "jdbc:mysql://localhost:3306/";
 
-    public BaseDatos(String nameDB, String USER, String PASS ) {
+    public BaseDatos(String nameDB, String USER, String PASS) {
         this.USER = USER;
         this.PASS = PASS;
         this.nameDB = nameDB;
@@ -75,26 +76,60 @@ public class BaseDatos {
 
     }
 
-    
     public void consultaPrueba2() {
         String nombre;
-            
-            try {
-                Statement sentencia = conexion.createStatement();
-                ResultSet resultado = sentencia.executeQuery("select concat_ws(\"-\", last_name, first_name) as nombre from customers;");
-                while(resultado.next()){
-                    nombre = resultado.getString("nombre");
-                   
-                    System.out.println("Nombre "+ nombre);
 
-                }
-                resultado.close();
-                sentencia.close();
-            
-            } catch (SQLException ex) {
-                Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            Statement sentencia = conexion.createStatement();
+            ResultSet resultado = sentencia.executeQuery("select concat_ws(\"-\", last_name, first_name) as nombre from customers;");
+            while (resultado.next()) {
+                nombre = resultado.getString("nombre");
+
+                System.out.println("Nombre " + nombre);
+
+            }
+            resultado.close();
+            sentencia.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public String[] describe(String nombre) {
+
+        String[] columnas = null;
+
+        int n_columnas = 0;
+
+        int i = 0;
+
+        try {
+
+            Statement statement = conexion.createStatement();
+
+            ResultSet resultset = statement.executeQuery("SELECT * FROM " + nombre);
+
+            ResultSetMetaData metadatos = resultset.getMetaData();
+
+            n_columnas = metadatos.getColumnCount();
+
+            columnas = new String[n_columnas];
+
+            for (i = 1; i <= n_columnas; i++) {
+
+                columnas[i - 1] = metadatos.getColumnName(i);
+
             }
 
+        } catch (SQLException ex) {
+
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        return columnas;
 
     }
 }
