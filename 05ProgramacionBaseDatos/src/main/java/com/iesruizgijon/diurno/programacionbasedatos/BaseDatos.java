@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.iesruzgijon.programacionbasedatos;
+package com.iesruizgijon.diurno.programacionbasedatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -131,5 +131,43 @@ public class BaseDatos {
 
         return columnas;
 
+    }
+    
+    public void GetBaseDatosName(){
+        try {
+
+            //He puesto una bd que debe existir siempre
+
+            // que es la bd "mysql"
+
+            conexion = DriverManager.getConnection(
+
+                    "jdbc:mysql://localhost/mysql", "root", "123qweASD_");
+
+            System.out.println("Conexión realizada con éxito");
+
+            
+
+                  Statement stmt = conexion.createStatement();
+
+                //Retrieving the data
+
+                ResultSet rs = stmt.executeQuery("Show Databases");
+
+                System.out.println("List of databases: ");
+
+                while(rs.next()) {
+
+                   System.out.print(rs.getString(1));
+
+                   System.out.println();
+
+                }
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }
 }
