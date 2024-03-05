@@ -48,6 +48,11 @@ public class principal extends javax.swing.JFrame {
                 EjecutarMouseClicked(evt);
             }
         });
+        Ejecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EjecutarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,8 +84,12 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EjecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EjecutarMouseClicked
-       
+       Salida.setText(Entrada.getText());
     }//GEN-LAST:event_EjecutarMouseClicked
+
+    private void EjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjecutarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EjecutarActionPerformed
 
     /**
      * @param args the command line arguments
