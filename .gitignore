@@ -24,3 +24,6 @@ hs_err_pid*
 replay_pid*
 /05ProgramacionBaseDatos/target/
 /client_mysql/target/
+/JTableExamples/target/
+/JTableExamples/6-JTable_Java_MySQL/6/nbproject/private/
+/6-JTable_Java_MySQL/6/nbproject/private/

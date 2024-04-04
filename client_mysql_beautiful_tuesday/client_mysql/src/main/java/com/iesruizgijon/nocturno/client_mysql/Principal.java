@@ -91,15 +91,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        ArrayList<String> tabla = null;
+        ArrayList<String> tabla =null;
         
-        BaseDatos bd = new BaseDatos("northwind", "root", "123qweASD_");
-        
-        tabla = bd.getQuery(entrada.getText());
+        BaseDatos bd = new BaseDatos("northwind","root", "123qweASD_");
+       
+        tabla =bd.getQuery(entrada.getText());
         
         String contenido = "";
         
         for (String elemento : tabla) {
+            
             contenido = contenido + elemento + "\n";
         }
         

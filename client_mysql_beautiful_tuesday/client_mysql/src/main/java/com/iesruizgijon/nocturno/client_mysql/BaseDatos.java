@@ -162,22 +162,23 @@ public class BaseDatos {
 
     }
 
-    public ArrayList<String> getQuery(String consulta) {
+    public ArrayList<String> getQuery(String consulta){
+        
         ArrayList<String> tabla = new ArrayList<>();
         String fila = new String();
-
+        
+        
         try {
             Statement sentencia = conexion.createStatement();
             ResultSet resultado = sentencia.executeQuery(consulta);
             ResultSetMetaData rsmd = resultado.getMetaData();
             int numeroColumnas = rsmd.getColumnCount();
-
+            
             while (resultado.next()) {
-                for (int i = 0; i < numeroColumnas; i++) {
-                    fila = fila + (resultado.getString(i + 1));
+                for (int i = 0; i <numeroColumnas;i++){
+                    fila = fila + resultado.getString(i+1);
                 }
-
-                tabla.add(fila);
+               tabla.add(fila);
 
             }
             resultado.close();
@@ -186,7 +187,6 @@ public class BaseDatos {
         } catch (SQLException ex) {
             Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return tabla;
     }
 
